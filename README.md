@@ -18,7 +18,7 @@ cd img_features
 unzip ResNet-152-imagenet.zip
 ```
 
-Python requirements: Need python3.6 (python 3.5 should be OK since I removed the allennlp dependencies)
+Python requirements: Need python3.6.
 ```
 pip install -r python_requirements.txt
 ```
@@ -60,4 +60,10 @@ Please cite this paper in your publications if it helps your research:
 
 
 ## TODO's
-1. 
+1. Release the checkpoint.
+2. Update the installation requirements.
+
+
+## Contact Information
+- hanqingwang[at]bit[dot]edu[dot]cn, Hanqing Wang
+- wenguanwang[dot]ai[at]gmail[dot]com, Wenguan Wang
