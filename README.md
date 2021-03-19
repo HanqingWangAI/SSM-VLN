@@ -1,4 +1,8 @@
-# Code and Data for Paper "Structured Scene Memory for Vision-Language Navigation" 
+# SSM-VLN
+
+Code and Data for our CVPR 2021 paper "[Structured Scene Memory for Vision-Language Navigation](https://arxiv.org/abs/2103.03454)".
+
+
 
 ## Environment Installation
 Download Room-to-Room navigation data:
@@ -31,7 +35,7 @@ make -j8
 ## Code
 
 ### Agent
-```
+``` bash
 cd ssm
 python train.py
 ```
@@ -41,7 +45,16 @@ python train.py
 
 
 
-
+## Citation
+Please cite this paper in your publications if it helps your research:
+```
+@inproceedings{wang2021structured,
+      title={Structured Scene Memory for Vision-Language Navigation}, 
+      author={Hanqing Wang and Wenguan Wang and Wei Liang and Caiming Xiong and Jianbing Shen},
+      booktitle=CVPR,
+      year={2021}
+}
+```
 
 
 
