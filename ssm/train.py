@@ -22,7 +22,7 @@ def train():
     os.chdir('..')
     print('current directory',os.getcwd())
 
-    visible_gpu = "0,1,2,3"
+    visible_gpu = "0,1,2,3" # avaiable GPUs, GPU0 is for processing gradient accumulating
     os.environ["CUDA_VISIBLE_DEVICES"] = visible_gpu
 
 
@@ -110,7 +110,7 @@ def train():
     torch.autograd.set_detect_anomaly(True)
 
 
-    learner = Learner(train_env, "", tok, args.maxAction, process_num=2, max_node=17, visible_gpu=visible_gpu)
+    learner = Learner(train_env, "", tok, args.maxAction, process_num=4, max_node=17, visible_gpu=visible_gpu)
 
   
     if load_path is not None:
