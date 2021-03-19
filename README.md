@@ -34,7 +34,7 @@ make -j8
 
 ## Code
 
-### Agent
+### Agent Training
 ``` bash
 cd ssm
 python train.py
@@ -62,6 +62,7 @@ Please cite this paper in your publications if it helps your research:
 ## TODO's
 1. Release the checkpoint.
 2. Update the installation requirements.
+3. Add evaluation scripts.
 
 
 ## Contact Information
