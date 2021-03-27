@@ -20,6 +20,8 @@ unzip ResNet-152-imagenet.zip
 
 Python requirements: Need python3.6.
 ```
+conda create -n ssm python=3.6
+conda activate ssm
 pip install -r python_requirements.txt
 ```
 
@@ -41,7 +43,11 @@ python train.py
 ```
 
 
-
+### Agent Evaluation
+``` bash
+cd ssm
+python eval_agent.py
+```
 
 
 
@@ -60,9 +66,9 @@ Please cite this paper in your publications if it helps your research:
 
 
 ## TODO's
-1. Release the checkpoint.
-2. Update the installation requirements.
-3. Add evaluation scripts.
+1. [ ] Release the checkpoint.
+2. [x] Update the installation requirements.
+3. [x] Add evaluation scripts.
 
 
 ## Contact Information
