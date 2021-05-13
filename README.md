@@ -71,11 +71,11 @@ Please cite this paper in your publications if it helps your research:
 
 
 
-
+<!-- 
 ## TODO's
 1. [x] Release the checkpoint.
 2. [x] Update the installation requirements.
-3. [x] Add evaluation scripts.
+3. [x] Add evaluation scripts. -->
 
 
 ## Contact Information
