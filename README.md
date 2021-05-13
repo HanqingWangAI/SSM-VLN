@@ -34,7 +34,7 @@ cmake -DEGL_RENDERING=ON ..
 make -j8
 ```
 
-## Code
+## Usage
 
 ### Agent Training
 ``` bash
@@ -44,9 +44,16 @@ python train.py
 
 
 ### Agent Evaluation
+Run the following scripts to evaluate the checkpoints.
 ``` bash
 cd ssm
 python eval_agent.py
+```
+
+The trained model for R2R task is available in [GoogleDrive](https://drive.google.com/file/d/15mINW_HOxweO-OX2W-LZN_5YoZXpzmNV/view?usp=sharing). Please download the checkpoint file under `snap/SSM/state_dict` path and run the following script to evaluate the model.
+``` bash
+cd ssm
+python model_eval.py
 ```
 
 
@@ -66,7 +73,7 @@ Please cite this paper in your publications if it helps your research:
 
 
 ## TODO's
-1. [ ] Release the checkpoint.
+1. [x] Release the checkpoint.
 2. [x] Update the installation requirements.
 3. [x] Add evaluation scripts.
 

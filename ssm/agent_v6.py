@@ -458,38 +458,6 @@ class SSM(BaseAgent):
         # return torch.from_numpy(reward).cuda().float()
         return reward
 
-    def make_label(self, cpu_a_t_after, cpu_a_t_before, perm_idx):
-        obs = np.array(self.env._get_obs())
-        scanIds = [ob['scan'] for ob in obs]
-        viewpoints = [ob['viewpoint'] for ob in obs]
-        headings = [ob['heading'] for ob in obs]
-        elevations = [ob['elevation'] for ob in obs]
-        perm_obs = obs[perm_idx]
-
-        self.make_equiv_action(self.env, cpu_a_t_after, perm_obs, perm_idx)
-        obs_temp = np.array(self.env._get_obs())
-        perm_obs_temp = obs_temp[perm_idx]
-
-        dist_after = np.array([ob['distance'] for ob in perm_obs_temp])
-
-        self.env.env.newEpisodes(scanIds,viewpoints,headings,elevations)
-
-        self.make_equiv_action(self.env, cpu_a_t_before, perm_obs, perm_idx)
-        obs_temp = np.array(self.env._get_obs())
-        perm_obs_temp = obs_temp[perm_idx]
-
-        dist_before = np.array([ob['distance'] for ob in perm_obs_temp])
-
-        self.env.env.newEpisodes(scanIds,viewpoints,headings,elevations)
-        return (dist_before > dist_after).astype(np.float32)
-
-    def policy_module(self, h, entropy, t):
-        batch_size = h.shape[0]
-        if t < 6:
-            return self.policy[t](h,entropy)
-        else:
-            return torch.ones(batch_size).cuda()
-    
     # @profile
     def update_state(self, ctx, ctx_mask, h, ended, noise=None):
         v_f, _, _, num_list = self.gb.get_nodes()
