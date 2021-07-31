@@ -1004,21 +1004,12 @@ class SSM(BaseAgent):
                 else:
                     names_perm.append(names_front[i][c])
             
-            h1, c1, hp, ha = self.jump(names_perm, perm_idx, obs, traj, ended, ctx, ctx_mask, h1, c1, noise) # jump to the selected viewpoint
+            last_h_, c1, hp, ha = self.jump(names_perm, perm_idx, obs, traj, ended, ctx, ctx_mask, h1, c1, noise) # jump to the selected viewpoint
 
 
         
 
         if train_rl:
-            # Last action in A2C
-            input_a_t, f_t, candidate_feat, candidate_leng = self.get_input_feat(perm_obs)
-            if speaker is not None:
-                candidate_feat[..., :-self.args.angle_feat_size] *= noise
-                f_t[..., :-self.args.angle_feat_size] *= noise
-            last_h_, _, _, _,_,_ = self.decoder(input_a_t, f_t, candidate_feat,
-                                            h1, c_t,
-                                            ctx, ctx_mask,
-                                            speaker is not None)
             rl_loss = 0.
 
             # NOW, A2C!!!
@@ -1040,10 +1031,12 @@ class SSM(BaseAgent):
                 a_ = (r_ - v_).detach()
 
                 # r_: The higher, the better. -ln(p(action)) * (discount_reward - value)
+                rl_loss += (-policy_log_probs_front[t] * a_ * mask_).sum()
                 rl_loss += (-policy_log_probs[t] * a_ * mask_).sum()
                 rl_loss += (((r_ - v_) ** 2) * mask_).sum() * 0.5     # 1/2 L2 loss
                 if self.feedback == 'sample':
                     rl_loss += (- 0.01 * entropys[t] * mask_).sum()
+                    # rl_loss += (- 0.01 * entropys_front[t] * mask_).sum()
                 self.logs['critic_loss'].append((((r_ - v_) ** 2) * mask_).sum().item())
 
                 total = total + np.sum(masks[t])
